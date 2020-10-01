@@ -4,7 +4,7 @@ import java.io.IOException;
 
 public class Reader implements Runnable {
 	public Thread thread;
-	private File file;
+	private final File file;
 	
 	public Reader(File file) {
 		thread = new Thread(this, "Thread" + file.getName());
@@ -16,13 +16,9 @@ public class Reader implements Runnable {
 	public void run() {
 		try {
 			FileManager.readFilesPer32Bytes(file);
-		}
-		catch(FileNotFoundException exc) {
+		} catch(IOException exc) {
 			exc.getMessage();
 		}
-		catch(IOException exc){
-			exc.getMessage();
-		}		
 	}
 	
 }

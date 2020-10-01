@@ -1,8 +1,8 @@
 import java.io.*;
 
 public class Program {
-	
-	public static void main(String[] args) throws IOException, InterruptedException {
+
+	public static void main(String[] args){
 		File[] files = new File[CommonRecourses.N1];
 		Reader[] readers = new Reader[CommonRecourses.N1];
 		
@@ -21,17 +21,7 @@ public class Program {
 			File outputFile = FileManager.createFile("out.txt");
 			FileManager.writeFromBufferToFile(outputFile, CommonRecourses.buffer);
 			
-		}
-		catch(FileNotFoundException exc) {
-			exc.getMessage();
-		}
-		catch(NullPointerException exc) {
-			exc.getMessage();
-		}
-		catch(InterruptedException exc) {
-			exc.getMessage();
-		}
-		catch(IOException exc) {
+		} catch(NullPointerException | InterruptedException | IOException exc) {
 			exc.getMessage();
 		}
 	}

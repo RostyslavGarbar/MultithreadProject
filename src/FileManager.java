@@ -16,17 +16,17 @@ public class FileManager {
 		writer.close();
 	}
 	
-	public static void readFilesPer32Bytes(File file) throws FileNotFoundException, IOException {
+	public static void readFilesPer32Bytes(File file) throws IOException {
 		byte[] tempBuf = new byte[CommonRecourses.N3];
 		InputStream inputStream = new FileInputStream(file);
 		
         while (inputStream.read(tempBuf) != -1) {
         	synchronized (CommonRecourses.myLock) {
-	 			for(int i = 0; i < tempBuf.length; ++i) {
-	 				if( tempBuf[i] != 0) {
-	 					CommonRecourses.buffer[CommonRecourses.buffer_index++] = tempBuf[i];
-	 				}
-	 			}
+				for (byte b : tempBuf) {
+					if (b != 0) {
+						CommonRecourses.buffer[CommonRecourses.buffer_index++] = b;
+					}
+				}
         	}    
         }
         
